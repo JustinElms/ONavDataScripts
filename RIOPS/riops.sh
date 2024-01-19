@@ -15,13 +15,29 @@ YESTERDAY=$(date -d "-1 days" +%Y%m%d)
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_riops/forecast/polar_stereographic/2d/ -o ${HOME}/db -h
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_riops/forecast/polar_stereographic/3d/ -o ${HOME}/db -h
 
+# Add today's earlier runs to archive
+RUNS=( $(find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | sort -n) )
+NRUNS=${#RUNS[*]}
+
+for IDX in "${!RUNS[@]}"
+do
+    if [ $IDX != $((NRUNS-1)) ]; then
+        ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps-archive -i /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_riops/forecast/polar_stereographic/2d/${RUNS[$IDX]} -o ${HOME}/db -h
+        ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps-archive -i /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_riops/forecast/polar_stereographic/3d/${RUNS[$IDX]} -o ${HOME}/db -h
+    fi
+done
+
+# Create new index db from archive
+
 cp ${HOME}/db/riops-fc2dps-archive.sqlite3 ${HOME}/db/riops-fc2dps.sqlite3
 cp ${HOME}/db/riops-fc3dps-archive.sqlite3 ${HOME}/db/riops-fc3dps.sqlite3
 
+# Index latest data
+
 cd ${HOME}/netcdf-timestamp-mapper
 
-find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/ -type f > riops-fc2dps.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/${RUNS[-1]} -type f > riops-fc2dps.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/ -o ${HOME}/db --file-list riops-fc2dps.txt -h
 
-find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/ -type f > riops-fc3dps.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/${RUNS[-1]} -type f > riops-fc3dps.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/ -o ${HOME}/db --file-list riops-fc3dps.txt  -h
