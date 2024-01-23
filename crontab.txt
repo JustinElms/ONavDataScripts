@@ -1,0 +1,19 @@
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+#
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+#
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+#
+# For more information see the manual pages of crontab(5) and cron(8)
+#
+# m h  dom mon dow   command
+
+01 6,18 * * * bash ${HOME}/index-scripts/index_giops_10day.sh
+01 */6 * * * bash ${HOME}/index-scripts/index_riops.sh
+01 7,12,18,13 * * * bash ${HOME}/index-scripts/index_ciops.sh
+01 6,18 * * * bash ${HOME}/index-scripts/sync_gdwps.sh
+01 1,7,13,19 * * * bash ${HOME}/index-scripts/index_wcps.sh
