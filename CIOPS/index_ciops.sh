@@ -46,7 +46,7 @@ rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-1 years" +%Y%m%d)
 
 ssh ubuntu@u2004-index "cd index-scripts ; ./ciops.sh ${RUN}"
 
-# # replace production dataset db
+# replace production dataset db
 
 lxc file pull u2004-index/home/ubuntu/db/ciops-east_fc_2dll.sqlite3 /data/db/
 lxc file pull u2004-index/home/ubuntu/db/ciops-east_fc_3dll.sqlite3 /data/db/
