@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Indexes latest RIOPS forecast data. 
+# Indexes latest RIOPS forecast data.
 # Place this script in Indexing LXD container and run it from index_riops.sh on host.
 
 DATE=$(date +%Y%m%d)
@@ -21,9 +21,6 @@ YESTERDAY=$(date -d "-1 days" +%Y%m%d)
 [ -f ${HOME}/netcdf-timestamp-mapper/ciops-salish_fc_3dll.txt ] && rm ${HOME}/netcdf-timestamp-mapper/ciops-salish_fc_3dll.txt
 
 # Add yesterday's best estimate data to archive
-${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_riops/forecast/polar_stereographic/2d/ -o ${HOME}/db -h
-${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_riops/forecast/polar_stereographic/3d/ -o ${HOME}/db -h
-
 find /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_ciops/east/2km/ -type f | grep -E "(Sfc|0.5m)" > ciops-east-2d-archive.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-east-2d-archive -i /data/hpfx.collab.science.gc.ca/ -o ${HOME}/db --file-list ciops-east-2d-archive.txt -h
 
@@ -49,19 +46,19 @@ NRUNS=${#RUNS[*]}
 for IDX in "${!RUNS[@]}"
 do
     if [ $IDX != $((NRUNS-1)) ]; then
-        find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/east/2km/${RUNS[$IDX]}  -type f | grep -E "(Sfc|0.5m)" > ciops-east-2d-temp.txt
+        find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/${RUNS[$IDX]}  -type f | grep -E "(Sfc|0.5m)" > ciops-east-2d-temp.txt
         ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-east-2d-archive -i /data/hpfx.collab.science.gc.ca/ -o ${HOME}/db --file-list ciops-east-2d-temp.txt -h
-        find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/east/2km/${RUNS[$IDX]}  -type f -name "*-all_*.nc" > ciops-east-3d-temp.txt
+        find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/${RUNS[$IDX]}  -type f -name "*-all_*.nc" > ciops-east-3d-temp.txt
         ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-east-2d-archive -i /data/hpfx.collab.science.gc.ca/ -o ${HOME}/db --file-list ciops-east-3d-temp.txt -h
 
-        find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/west/2km/${RUNS[$IDX]}  -type f | grep -E "(Sfc|0.5m)" > ciops-west-2d-temp.txt
+        find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/${RUNS[$IDX]}  -type f | grep -E "(Sfc|0.5m)" > ciops-west-2d-temp.txt
         ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-west-2d-archive -i /data/hpfx.collab.science.gc.ca/ -o ${HOME}/db --file-list ciops-west-2d-temp.txt -h
-        find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/west/2km/${RUNS[$IDX]}  -type f -name "*-all_*.nc" > ciops-west-3d-temp.txt
+        find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/${RUNS[$IDX]}  -type f -name "*-all_*.nc" > ciops-west-3d-temp.txt
         ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-west-2d-archive -i /data/hpfx.collab.science.gc.ca/ -o ${HOME}/db --file-list ciops-west-3d-temp.txt -h
 
-        find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/salish-sea/500m/${RUNS[$IDX]}  -type f | grep -E "(Sfc|0.5m)" > ciops-salish-2d-temp.txt
+        find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/${RUNS[$IDX]}  -type f | grep -E "(Sfc|0.5m)" > ciops-salish-2d-temp.txt
         ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-salish-2d-archive -i /data/hpfx.collab.science.gc.ca/ -o ${HOME}/db --file-list ciops-salish-2d-temp.txt -h
-        find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/salish-sea/500m/${RUNS[$IDX]}  -type f -name "*-all_*.nc" > ciops-salish-3d-temp.txt
+        find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/${RUNS[$IDX]}  -type f -name "*-all_*.nc" > ciops-salish-3d-temp.txt
         ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-salish-2d-archive -i /data/hpfx.collab.science.gc.ca/ -o ${HOME}/db --file-list ciops-salish-3d-temp.txt -h                
     fi
 done
@@ -79,17 +76,17 @@ cp ${HOME}/db/ciops-salish-3d-archive.sqlite3 ${HOME}/db/ciops-salish_fc_3dll.sq
 
 # Index latest data
 
-find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/east/2km/${RUNS[-1]}  -type f | grep -E "(Sfc|0.5m)" > ciops-east-2d.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/${RUNS[-1]}  -type f | grep -E "(Sfc|0.5m)" > ciops-east-2d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-east_fc_2dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-east-2d.txt -h
-find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/east/2km/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-east-3d-temp.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-east-3d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-east_fc_3dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-east-3d.txt -h
 
-find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/west/2km/${RUNS[-1]}  -type f | grep -E "(Sfc|0.5m)" > ciops-west-2d.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/${RUNS[-1]}  -type f | grep -E "(Sfc|0.5m)" > ciops-west-2d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-west_fc_2dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-west-2d.txt -h
-find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/west/2km/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-west-3d-temp.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-west-3d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-west_fc_3dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-west-3d.txt -h
 
-find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/salish-sea-500m/${RUNS[-1]}  -type f | grep -E "(Sfc|0.5m)" > ciops-salish-2d.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea-500m/${RUNS[-1]}  -type f | grep -E "(Sfc|0.5m)" > ciops-salish-2d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-salish_fc_2dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-salish-2d.txt -h
-find /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_ciops/salish-sea-500m/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-salish-3d-temp.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea-500m/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-salish-3d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-salish_fc_3dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-salish-3d.txt -h

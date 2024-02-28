@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Indexes latest GIOPS 10 day forecast data. 
-# Place this script in Indexing LXD container and run it from index_giops_10day.sh on host.
+# Place this script in Indexing LXD container and run it from index_giops.sh on host.
 # Takes 1 argument - RUN - the forecast run to be indexed. Should be 00 or 12
 
 RUN=$1

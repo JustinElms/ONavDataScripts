@@ -30,7 +30,7 @@ rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-1 years" +%Y%m%d)
 
 # index new dataset
 
-ssh ubuntu@u2004-index "cd index-scripts ; ./giops_10day.sh ${RUN}"
+ssh ubuntu@u2004-index "cd index-scripts ; ./giops.sh ${RUN}"
 
 # replace production dataset db
 

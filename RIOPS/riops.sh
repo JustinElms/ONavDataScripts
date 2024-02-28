@@ -22,8 +22,8 @@ NRUNS=${#RUNS[*]}
 for IDX in "${!RUNS[@]}"
 do
     if [ $IDX != $((NRUNS-1)) ]; then
-        ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps-archive -i /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_riops/forecast/polar_stereographic/2d/${RUNS[$IDX]} -o ${HOME}/db -h
-        ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps-archive -i /data/hpfx.collab.science.gc.ca/${Date}/WXO-DD/model_riops/forecast/polar_stereographic/3d/${RUNS[$IDX]} -o ${HOME}/db -h
+        ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps-archive -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/forecast/polar_stereographic/2d/${RUNS[$IDX]} -o ${HOME}/db -h
+        ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps-archive -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/forecast/polar_stereographic/3d/${RUNS[$IDX]} -o ${HOME}/db -h
     fi
 done
 

@@ -12,7 +12,7 @@
 #
 # m h  dom mon dow   command
 
-01 6,18 * * * bash ${HOME}/index-scripts/index_giops_10day.sh
+01 6,18 * * * bash ${HOME}/index-scripts/index_giops.sh
 01 */6 * * * bash ${HOME}/index-scripts/index_riops.sh
 01 7,12,18,13 * * * bash ${HOME}/index-scripts/index_ciops.sh
 01 6,18 * * * bash ${HOME}/index-scripts/sync_gdwps.sh
