@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Indexes latest RIOPS forecast data.
-# Place this script in Indexing LXD container and run it from index_riops.sh on host.
+# Place this script in Indexing LXD container and run it from index_ciops.sh on host.
 
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date -d "-1 days" +%Y%m%d)
@@ -90,3 +90,12 @@ find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea-500m/
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-salish_fc_2dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-salish-2d.txt -h
 find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea-500m/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-salish-3d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-salish_fc_3dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-salish-3d.txt -h
+
+mv {$HOME}/db/ciops-east_fc_2dll.sqlite3 /data/db/
+mv {$HOME}/db/ciops-east_fc_3dll.sqlite3 /data/db/
+
+mv {$HOME}/db/ciops-west_fc_2dll.sqlite3 /data/db/
+mv {$HOME}/db/ciops-west_fc_3dll.sqlite3 /data/db/
+
+mv {$HOME}/db/ciops-salish_fc_2dll.sqlite3 /data/db/
+mv {$HOME}/db/ciops-salish_fc_3dll.sqlite3 /data/db/

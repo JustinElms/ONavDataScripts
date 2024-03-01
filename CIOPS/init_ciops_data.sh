@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Initializes best estimate for GIOPS datasetsinit_giops_data.
+
 DATE=$(date -d "-1 years" +%Y%m%d)
 END_DATE=$(date +%Y%m%d)
 

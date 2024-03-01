@@ -13,10 +13,6 @@ lftp -e "mirror --parallel=5 model_wcps . ; bye" http://hpfx.collab.science.gc.c
 
 ssh ubuntu@u2004-index "cd index-scripts ; ./wcps.sh"
 
-# replace production dataset db
-
-lxc file pull u2004-index/home/ubuntu/db/wcps-2dll.sqlite3 /data/db/
-
 # remove yesterday's forecast data 
 
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_wcps

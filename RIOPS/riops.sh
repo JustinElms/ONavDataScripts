@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Indexes latest RIOPS forecast data. 
+# Indexes latest RIOPS forecast data.
 # Place this script in Indexing LXD container and run it from index_riops.sh on host.
 
 DATE=$(date +%Y%m%d)
@@ -39,3 +39,8 @@ ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps -i /da
 
 find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/${RUNS[-1]} -type f > riops-fc3dps.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/ -o ${HOME}/db --file-list riops-fc3dps.txt  -h
+
+# replace production dataset db
+
+mv {$HOME}/db/riops-fc2dps.sqlite3 /data/db/
+mv {$HOME}/db/riops-fc3dps.sqlite3 /data/db/

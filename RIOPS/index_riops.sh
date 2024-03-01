@@ -40,8 +40,3 @@ rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-1 years" +%Y%m%d)
 # Index new dataset
 
 ssh ubuntu@u2004-index "cd index-scripts ; ./riops.sh ${RUN}"
-
-# # replace production dataset db
-
-lxc file pull u2004-index/home/ubuntu/db/riops-fc2dps.sqlite3 /data/db/
-lxc file pull u2004-index/home/ubuntu/db/riops-fc3dps.sqlite3 /data/db/

@@ -17,3 +17,5 @@ fi
 
 [ -f ${HOME}/db/wcps-2dll.sqlite3 ] && rm ${HOME}/db/wcps-2dll.sqlite3
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n wcps-2dll -i /data/hpfx.collab.science.gc.ca -o ${HOME}/db --file-list ${HOME}/wcps-file.txt -h
+
+mv {$HOME}/db/wcps-2dll.sqlite3 /data/db/
