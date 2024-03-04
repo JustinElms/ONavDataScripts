@@ -18,6 +18,8 @@ while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
         EXCLUDE=$(printf "%s " "${EXC_ARR[@]}")
         lftp -e "mirror -c --parallel=5 --exclude 000/ ${EXCLUDE[@]} 2d 2d ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/
 
+        rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/12/012/
+
         EXC_ARR=( "--exclude "{048..240..024}"/" )
         EXCLUDE=$(printf "%s " "${EXC_ARR[@]}")
         lftp -e "mirror -c --parallel=5 ${EXCLUDE[@]} 3d 3d ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/
