@@ -12,8 +12,8 @@
 #
 # m h  dom mon dow   command
 
-01 6,18 * * * bash ${HOME}/Index-Scripts-Host/index_giops.sh
-01 */6 * * * bash ${HOME}/Index-Scripts-Host/index_riops.sh
-01 7,12,18,13 * * * bash ${HOME}/Index-Scripts-Host/index_ciops.sh
-01 6,18 * * * bash ${HOME}/Index-Scripts-Host/sync_gdwps.sh
-01 1,7,13,19 * * * bash ${HOME}/Index-Scripts-Host/index_wcps.sh
+01 6,18 * * * bash ${HOME}/index-scripts-host/index_giops.sh
+01 */6 * * * bash ${HOME}/index-scripts-host/index_riops.sh
+01 7,12,18,13 * * * bash ${HOME}/index-scripts-host/index_ciops.sh
+01 6,18 * * * bash ${HOME}/index-scripts-host/sync_gdwps.sh
+01 1,7,13,19 * * * bash ${HOME}/index-scripts-host/index_wcps.sh
