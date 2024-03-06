@@ -24,4 +24,4 @@ while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
     fi
 done
 
-ssh ubuntu@u2004-index "cd index-scripts-remote ; ./init_riops_db.sh"
+ssh ubuntu@u2004-index "cd index-scripts-remote/RIOPS/ ; ./init_riops_db.sh"
