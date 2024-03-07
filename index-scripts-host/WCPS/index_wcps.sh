@@ -11,7 +11,7 @@ lftp -e "mirror --parallel=5 model_wcps . ; bye" http://hpfx.collab.science.gc.c
 
 # Index new dataset
 
-ssh ubuntu@u2004-index "cd index-scripts-remote/WCPS/ ; ./wcps.sh"
+ssh ubuntu@u2004-index "cd index-scripts-remote/WCPS/ ; bash wcps.sh"
 
 # remove yesterday's forecast data 
 
