@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+import os
 import sqlite3
 
 uris = [
@@ -12,8 +13,8 @@ uris = [
     "/home/ubuntu/db/giops-fc3dll-10day-00-archive.sqlite3",
     "/home/ubuntu/db/giops-fc3dll-10day-12-archive.sqlite3",
     "/home/ubuntu/db/giops-fc2dll-archive.sqlite3",
-    "/home/db/riops-fc2dps-archive.sqlite3",
-    "/home/db/riops-fc3dps-archive.sqlite3",
+    "/home/ubuntu/db/riops-fc2dps-archive.sqlite3",
+    "/home/ubuntu/db/riops-fc3dps-archive.sqlite3",
 ]
 
 today = datetime.today()
@@ -23,11 +24,17 @@ time_delta = cutoff_date - datetime(1950, 1, 1)
 timestamp_cutoff = time_delta.days * 3600 * 24
 
 for uri in uris:
+    if not os.path.isfile(uri):
+        print(f"Skipping {uri}. File does not exist.")
+        continue
+
+    print(f"Cleaning {uri}...")
+
     conn = sqlite3.connect(uri, uri=True)
     c = conn.cursor()
 
     c.execute(
-        "SELECT * FROM timestamps where timestamps.timestamp "
+        "SELECT * FROM Timestamps where Timestamps.timestamp "
         f"< {timestamp_cutoff};"
     )
     data = c.fetchall()
