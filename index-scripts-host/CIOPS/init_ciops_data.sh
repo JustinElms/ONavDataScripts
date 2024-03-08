@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Initializes best estimate for GIOPS datasetsinit_giops_data.
+# Initializes best estimate for CIOPS datasets.
 
 DATE=$(date -d "-1 years" +%Y%m%d)
 END_DATE=$(date +%Y%m%d)
@@ -11,9 +11,6 @@ while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
     echo $DATE
 
     if wget -q --method=HEAD http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/; then
-        # Download data for the current date
-        DATE=$(date -d "${DATE} +1 days" +%Y%m%d)
-
         # Download data for the current date
         INC_ARR=( "--include /"{000..005}"/" )
         INCLUDE=$(printf "%s " "${INC_ARR[@]}")  
