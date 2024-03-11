@@ -28,8 +28,6 @@ fi
 
 cp ${HOME}/db/giops-fc2dll-archive.sqlite3 ${HOME}/db/giops-fc2dll.sqlite3
 
-cd ${HOME}/netcdf-timestamp-mapper
-
 find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/ -type f > giops-fc2dll-10day.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc2dll-10day -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/ -o ${HOME}/db --file-list giops-fc2dll-10day.txt -h
 
