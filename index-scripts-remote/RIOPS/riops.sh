@@ -40,7 +40,11 @@ ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps -i /da
 find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/${RUNS[-1]} -type f > riops-fc3dps.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/ -o ${HOME}/db --file-list riops-fc3dps.txt  -h
 
+find /data/depot.cmc.ec.gc.ca/ftp/cmoi/dfo/dfo.ccg/ -type f -print | grep $(date +%Y%m%d) | tail -1 > riops-fc2dll.txt
+${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dll -i /data/depot.cmc.ec.gc.ca/ftp/cmoi/dfo/dfo.ccg -o ${HOME}/db --file-list riops-fc2dll.txt -h
+
 # replace production dataset db
 
 mv ${HOME}/db/riops-fc2dps.sqlite3 /data/db-test/
 mv ${HOME}/db/riops-fc3dps.sqlite3 /data/db-test/
+mv ${HOME}/db/riops-fc2dll.sqlite3 /data/db-test/
