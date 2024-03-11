@@ -42,5 +42,5 @@ ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc3dps -i /da
 
 # replace production dataset db
 
-mv {$HOME}/db/riops-fc2dps.sqlite3 /data/db-test/
-mv {$HOME}/db/riops-fc3dps.sqlite3 /data/db-test/
+mv ${HOME}/db/riops-fc2dps.sqlite3 /data/db-test/
+mv ${HOME}/db/riops-fc3dps.sqlite3 /data/db-test/
