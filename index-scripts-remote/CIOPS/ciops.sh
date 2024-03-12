@@ -86,9 +86,9 @@ ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-west_fc_2dll 
 find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-west-3d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-west_fc_3dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-west-3d.txt -h
 
-find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea-500m/${RUNS[-1]}  -type f | grep -E "(Sfc|0.5m)" > ciops-salish-2d.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/${RUNS[-1]}  -type f | grep -E "(Sfc|0.5m)" > ciops-salish-2d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-salish_fc_2dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-salish-2d.txt -h
-find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea-500m/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-salish-3d.txt
+find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/${RUNS[-1]}  -type f -name "*-all_*.nc" > ciops-salish-3d.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ciops-salish_fc_3dll -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/ -o ${HOME}/db --file-list ciops-salish-3d.txt -h
 
 mv ${HOME}/db/ciops-east_fc_2dll.sqlite3 /data/db/

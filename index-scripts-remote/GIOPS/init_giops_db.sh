@@ -8,7 +8,7 @@ rm ${HOME}/db/giops-fc2dll-archive.sqlite3
 rm ${HOME}/db/giops-fc3dll-10day-00-archive.sqlite3
 rm ${HOME}/db/giops-fc3dll-10day-12-archive.sqlite3
 
-find /data/hpfx.collab.science.gc.ca/*/WXO-DD/model_giops/netcdf/lat_lon/2d/00/012/ -type f > giops-fc2dll-archive.txt
+find /data/hpfx.collab.science.gc.ca/*/WXO-DD/model_giops/netcdf/lat_lon/2d/ -type f > giops-fc2dll-archive.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc2dll-archive -i /data/hpfx.collab.science.gc.ca/$(date +%Y%m%d)/WXO-DD/model_giops/ -o ${HOME}/db --file-list giops-fc2dll-archive.txt -h
 
 find /data/hpfx.collab.science.gc.ca/*/WXO-DD/model_giops/netcdf/lat_lon/3d/00/000/ -type f > giops-fc3dll-10day-00-archive.txt
