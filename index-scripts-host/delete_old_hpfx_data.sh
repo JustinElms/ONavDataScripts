@@ -2,7 +2,7 @@
 
 # Removes data older than 1 year in hpfx datastore
 
-DATE="202200401"
+DATE="20220401"
 END=$(date -d "-1 years" +%Y%m%d)
 
 while [ "$DATE" != $END ]; do 
