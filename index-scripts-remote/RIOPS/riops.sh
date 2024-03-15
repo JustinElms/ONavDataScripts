@@ -3,6 +3,8 @@
 # Indexes latest RIOPS forecast data.
 # Place this script in Indexing LXD container and run it from index_riops.sh on host.
 
+python ${HOME}/index-scripts-remote/clean_archive_dbs.py
+
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date -d "-1 days" +%Y%m%d)
 

@@ -4,7 +4,9 @@
 # Place this script in Indexing LXD container and run it from index_giops.sh on host.
 # Takes 1 argument - RUN - the forecast run to be indexed. Should be 00 or 12
 
-RUN=$1
+RUN=$
+
+python ${HOME}/index-scripts-remote/clean_archive_dbs.py
 
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date -d "-1 days" +%Y%m%d)
