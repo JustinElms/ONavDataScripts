@@ -11,6 +11,12 @@ YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_ciops/{east,west}/2km/{00..18..06}/{006..048}
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_ciops/salish-sea/500m/{00..18..06}/{007..048}
 
+# Make directories for new data
+
+[ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/ ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/
+[ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/ ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/
+[ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/ ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/
+
 # Remove 006/7-048 timestamps from all but latest run of today's data
 INC_ARR=( "--include /"{000..006}"/" )
 INCLUDE=$(printf "%s " "${INC_ARR[@]}")
@@ -53,4 +59,4 @@ rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-1 years" +%Y%m%d)
 
 # Index new dataset
 
-ssh ubuntu@u2004-index "cd index-scripts-remote/CIOPS/ ; bash ciops.sh ${RUN}"
+ssh ubuntu@u2004-index "cd index-scripts-remote/CIOPS/ ; bash ciops.sh"

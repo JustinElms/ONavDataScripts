@@ -39,4 +39,4 @@ rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-1 years" +%Y%m%d)
 
 # Index new dataset
 
-ssh ubuntu@u2004-index "cd index-scripts-remote/RIOPS/ ; bash riops.sh ${RUN}"
+ssh ubuntu@u2004-index "cd index-scripts-remote/RIOPS/ ; bash riops.sh"

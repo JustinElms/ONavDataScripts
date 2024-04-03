@@ -16,11 +16,8 @@ lftp -e "mirror -c --parallel=5 lat_lon lat_lon ; bye" http://hpfx.collab.scienc
 
 
 if [ -d http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/ ]; then
-    RUN="12"
     rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/00/{015..240..003}
     rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{024..240..024}
-else
-    RUN="00"
 fi
 
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/2d/00/{015..240..003}
@@ -34,4 +31,4 @@ rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-1 years" +%Y%m%d)
 
 # index new dataset
 
-ssh ubuntu@u2004-index "cd index-scripts-remote/GIOPS/ ; bash giops.sh ${RUN}"
+ssh ubuntu@u2004-index "cd index-scripts-remote/GIOPS/ ; bash giops.sh"

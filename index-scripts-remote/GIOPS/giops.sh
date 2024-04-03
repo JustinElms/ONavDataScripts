@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-# Indexes latest GIOPS 10 day forecast data. 
+# Indexes latest GIOPS 10 day forecast data.
 # Place this script in Indexing LXD container and run it from index_giops.sh on host.
-# Takes 1 argument - RUN - the forecast run to be indexed. Should be 00 or 12
-
-RUN=$
-
-python ${HOME}/index-scripts-remote/clean_archive_dbs.py
 
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date -d "-1 days" +%Y%m%d)
@@ -16,19 +11,19 @@ YESTERDAY=$(date -d "-1 days" +%Y%m%d)
 [ -f ${HOME}/netcdf-timestamp-mapper/giops-fc2dll-10day.txt ] && rm ${HOME}/netcdf-timestamp-mapper/giops-fc2dll-10day.txt
 [ -f ${HOME}/netcdf-timestamp-mapper/giops-fc3dll-10day.txt ] && rm ${HOME}/netcdf-timestamp-mapper/giops-fc3dll-10day.txt
 
+if [ -d http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/ ]
+then
+    RUN="12"
+else
+    RUN="00"
+fi
+
 # Add yesterday's best estimate data to archive
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc2dll-10day-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/2d/ -o ${HOME}/db -h
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc3dll-10day-${RUN}-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/${RUN}/ -o ${HOME}/db -h
 
-if [ $RUN == 12 ]
-then
-    cp ${HOME}/db/giops-fc3dll-10day-12-archive.sqlite3 ${HOME}/db/giops-fc3dll-10day.sqlite3
-elif [ $RUN == 00 ]
-then
-    cp ${HOME}/db/giops-fc3dll-10day-00-archive.sqlite3 ${HOME}/db/giops-fc3dll-10day.sqlite3
-fi
-
 cp ${HOME}/db/giops-fc2dll-archive.sqlite3 ${HOME}/db/giops-fc2dll-10day.sqlite3
+cp ${HOME}/db/giops-fc3dll-10day-${RUN}-archive.sqlite3 ${HOME}/db/giops-fc3dll-10day.sqlite3
 
 find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/ -type f > giops-fc2dll-10day.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc2dll-10day -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/ -o ${HOME}/db --file-list giops-fc2dll-10day.txt -h
