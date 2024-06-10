@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Indexes latest RIOPS forecast data.
+# Indexes latest CIOPS forecast data.
 # Place this script in Indexing LXD container and run it from index_ciops.sh on host.
 
 python ${HOME}/index-scripts-remote/clean_archive_dbs.py
