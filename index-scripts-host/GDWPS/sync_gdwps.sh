@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Downloads and indexes latest GIOPS model data for 10 day forecast
+# Downloads and indexes latest GDWPS model data
 
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
