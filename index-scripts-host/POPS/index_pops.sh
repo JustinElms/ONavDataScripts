@@ -20,8 +20,4 @@ done
 
 ssh ubuntu@u2004-index "cd index-scripts-remote/POPS/ ; bash pops.sh"
 
-# for MODEL in ${MODELS[@]}; do
-#   lxc file pull u2004-index/home/ubuntu/db/${MODEL}.sqlite3 /data/db/
-# done
-
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/model_pops

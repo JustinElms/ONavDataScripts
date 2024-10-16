@@ -13,5 +13,5 @@ for MODEL in ${MODELS[@]}; do
   
   ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ${MODEL} -i /data/hpfx.collab.science.gc.ca/${DATE}/model_pops/${MODEL}/ -o ${HOME}/db -h
 
-  mv ${HOME}/db/${MODEL}.sqlite3 /data/db/
+  mv ${HOME}/db/${MODEL}.sqlite3 /data/db
 done
