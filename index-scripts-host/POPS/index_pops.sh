@@ -7,7 +7,7 @@ source $HOME/onav-cloud/etc/ocean-navigator-env.sh
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 
-MODELS=(canso100 canso500 fundy500 grc100 kit100 kit500 sf30 sj100 sss150 stle200 stle500 vh20)
+MODELS=(canso100 canso500 fundy500 kit100 kit500 sf30 sj100 sss150 stle200 stle500 vh20)
 
 [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/model_pops ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/model_pops/
 
