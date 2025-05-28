@@ -8,11 +8,11 @@ python ${HOME}/index-scripts-remote/clean_archive_dbs.py
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date -d "-1 days" +%Y%m%d)
 
-[ -f ${HOME}/db/ciops-east_fc_2dl.sqlite3 ] && rm ${HOME}/db/ciops-east_fc_2dl.sqlite3
+[ -f ${HOME}/db/ciops-east_fc_2dll.sqlite3 ] && rm ${HOME}/db/ciops-east_fc_2dll.sqlite3
 [ -f ${HOME}/db/ciops-east_fc_3dll.sqlite3 ] && rm ${HOME}/db/ciops-east_fc_3dll.sqlite3
-[ -f ${HOME}/db/ciops-west_fc_2dl.sqlite3 ] && rm ${HOME}/db/ciops-west_fc_2dl.sqlite3
+[ -f ${HOME}/db/ciops-west_fc_2dll.sqlite3 ] && rm ${HOME}/db/ciops-west_fc_2dll.sqlite3
 [ -f ${HOME}/db/ciops-west_fc_3dll.sqlite3 ] && rm ${HOME}/db/ciops-west_fc_3dll.sqlite3
-[ -f ${HOME}/db/ciops-salish_fc_2dl.sqlite3 ] && rm ${HOME}/db/ciops-salish_fc_2dl.sqlite3
+[ -f ${HOME}/db/ciops-salish_fc_2dll.sqlite3 ] && rm ${HOME}/db/ciops-salish_fc_2dll.sqlite3
 [ -f ${HOME}/db/ciops-salish_fc_3dll.sqlite3 ] && rm ${HOME}/db/ciops-salish_fc_3dll.sqlite3
 
 [ -f ${HOME}/netcdf-timestamp-mapper/ciops-east_fc_2dll.txt ] && rm ${HOME}/netcdf-timestamp-mapper/ciops-east_fc_2dll.txt

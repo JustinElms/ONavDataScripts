@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# Downloads and indexes today's RIOPS model data
+# Downloads and indexes today's CIOPS model data
 
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 
 # Create best estimate:
-# Remove 0067-048 timestamps from yesterday's data
+# Remove 006/7-048 timestamps from yesterday's data
 
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_ciops/{east,west}/2km/{00..18..06}/{006..048}
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_ciops/salish-sea/500m/{00..18..06}/{007..048}
