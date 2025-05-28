@@ -12,9 +12,10 @@
 #
 # m h  dom mon dow   command
 
-01 6,18 * * * bash ${HOME}/index-scripts-host/GIOPS/index_giops.sh
-01 */6 * * * bash ${HOME}/index-scripts-host/RIOPS/index_riops.sh
-01 7,12,18,13 * * * bash ${HOME}/index-scripts-host/CIOPS/index_ciops.sh
-01 6,18 * * * bash ${HOME}/index-scripts-host/GDWPS/sync_gdwps.sh
-01 1,7,13,19 * * * bash ${HOME}/index-scripts-host/WCPS/index_wcps.sh
-01 0 * * * ssh ubuntu@u2004-index "cd index-scripts-remote/ ; python clean_archive_dbs.py"
+01 6,18 * * * bash ${HOME}/index-scripts-host/GIOPS/index_giops.sh >> ${HOME}/index-scripts-host/logs/index_giops.log 2>&1
+01 */6 * * * bash ${HOME}/index-scripts-host/RIOPS/index_riops.sh >> ${HOME}/index-scripts-host/logs/index_riops.log 2>&1
+01 7,12,18,13 * * * bash ${HOME}/index-scripts-host/CIOPS/index_ciops.sh >> ${HOME}/index-scripts-host/logs/index_ciops.log 2>&1
+01 12 * * * bash ${HOME}/index-scripts-host/POPS/index_pops.sh >> ${HOME}/index-scripts-host/logs/index_pops.log 2>&1
+01 6,18 * * * bash ${HOME}/index-scripts-host/GDWPS/sync_gdwps.sh >> ${HOME}/index-scripts-host/logs/sync_gdwps.log 2>&1
+01 1,7,13,19 * * * bash ${HOME}/index-scripts-host/WCPS/index_wcps.sh >> ${HOME}/index-scripts-host/logs/index_wcps.log 2>&1
+01 0 * * * ssh ubuntu@u2004-index "cd index-scripts-remote/ ; python clean_archive_dbs.py" >> ${HOME}/index-scripts-host/logs/clean_archive.log 2>&1
