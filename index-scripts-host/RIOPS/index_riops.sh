@@ -6,7 +6,6 @@ DATE=$(date +%Y%m%d)
 YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 
 # Get new data
-
 INC_ARR=( "--include "{000..005}"/" )
 INCLUDE=$(printf "%s " "${INC_ARR[@]}") 
 [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic
