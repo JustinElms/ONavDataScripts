@@ -2,7 +2,7 @@
 
 # Initializes best estimate for CIOPS datasets.
 
-DATE=$(date -d "-1 years" +%Y%m%d)
+DATE=$(date -d "-2 years" +%Y%m%d)
 END_DATE=$(date +%Y%m%d)
 
 # Get available data from past year

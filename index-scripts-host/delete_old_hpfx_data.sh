@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Removes data older than 1 year in hpfx datastore
+# Removes data older than 2 years in hpfx datastore
 
-DATE="20220401"
-END=$(date -d "-1 years" +%Y%m%d)
+DATE=$(date +%Y%m%d)
+END=$(date -d "-2 years" +%Y%m%d)
 
 while [ "$DATE" != $END ]; do 
   echo $DATE
@@ -14,6 +14,8 @@ while [ "$DATE" != $END ]; do
   rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/
   echo "Removing CIOPS"
   rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/
+  echo "Removing CAPS"
+  rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/
   echo "Removing WCPS"
   rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_wcps/
   echo "Removing GDWPS"

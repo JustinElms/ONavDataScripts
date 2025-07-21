@@ -32,9 +32,9 @@ do
     fi
 done
 
-# Remove data older than 1 yr
+# Remove data older than 2 yrs
 
-rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-1 years" +%Y%m%d)
+rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-2 years" +%Y%m%d)
 
 # Index new dataset
 

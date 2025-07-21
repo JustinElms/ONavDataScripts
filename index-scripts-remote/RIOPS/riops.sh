@@ -30,12 +30,10 @@ do
 done
 
 # Create new index db from archive
-
 cp ${HOME}/db/riops-fc2dps-archive.sqlite3 ${HOME}/db/riops-fc2dps.sqlite3
 cp ${HOME}/db/riops-fc3dps-archive.sqlite3 ${HOME}/db/riops-fc3dps.sqlite3
 
 # Index latest data
-
 find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/${RUNS[-1]} -type f > ${HOME}/db/riops-fc2dps.txt
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n riops-fc2dps -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/ -o ${HOME}/db --file-list ${HOME}/db/riops-fc2dps.txt -h
 

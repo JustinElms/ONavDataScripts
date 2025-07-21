@@ -25,9 +25,9 @@ rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{024..240..024}
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/{048..240..024}
 
-# Remove data older than 1 yr
+# Remove data older than 2 yrs
 
-rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-1 years" +%Y%m%d)
+rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-2 years" +%Y%m%d)
 
 # index new dataset
 

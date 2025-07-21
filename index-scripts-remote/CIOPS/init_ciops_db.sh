@@ -11,7 +11,7 @@ rm ${HOME}/db/ciops-east-3d-archive.sqlite3
 rm ${HOME}/db/ciops-west-3d-archive.sqlite3
 rm ${HOME}/db/ciops-salish-3d-archive.sqlite3
 
-DATE=$(date -d "-1 years" +%Y%m)
+DATE=$(date -d "-2 years" +%Y%m)
 ENDDATE=$(date +%Y%m)
 
 while [ $DATE -le $ENDDATE ]; do 

@@ -7,7 +7,7 @@ cd ${HOME}/netcdf-timestamp-mapper
 rm ${HOME}/db/riops-fc2dps-archive.sqlite3
 rm ${HOME}/db/riops-fc3dps-archive.sqlite3
 
-DATE=$(date -d "-1 years" +%Y%m)
+DATE=$(date -d "-2 years" +%Y%m)
 ENDDATE=$(date +%Y%m)
 
 while [ $DATE -le $ENDDATE ]; do 
