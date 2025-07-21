@@ -6,11 +6,11 @@ DATE=$(date +%Y%m%d)
 YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 
 # Get new data
-INC_ARR=( "--include "{000..013}"/" )
+INC_ARR=( "--include "{001..012}"/*.nc" )
 INCLUDE=$(printf "%s " "${INC_ARR[@]}") 
 [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/
 cd http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
-lftp -e "mirror -c --parallel=5 --include /"*.nc" ${INCLUDE} model_caps/ model_caps/ ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
+lftp -e "mirror -c --parallel=5 ${INCLUDE} model_caps/ model_caps/ ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
 
 # Create best estimate:
 # Remove 013-048 timestamps from yesterday's data
@@ -26,7 +26,7 @@ do
         rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km/${RUNS[$IDX]}/{013..048}
     else
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km/
-        lftp -e "mirror -c --parallel=5 --include /"*.nc" ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km/      
+        lftp -e "mirror -c --parallel=5 ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km/      
     fi
 done
 
