@@ -2,7 +2,7 @@
 
 # Initializes best estimate for CAPS datasets.
 
-DATE=20250721 # Data prior to 2025-07-21 contains incorrect lat/lon info and cannot be used
+DATE=$(date -d 2025-07-21 +%Y%m%d) # Data prior to 2025-07-21 contains incorrect lat/lon info and cannot be used
 END_DATE=$(date +%Y%m%d)
 
 # Get available data from past year
@@ -15,7 +15,7 @@ while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
         INCLUDE=$(printf "%s " "${INC_ARR[@]}")
         [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/ ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
-        lftp -e "mirror -c --parallel=5 -x *.grib2 --include /"*.nc" ${INCLUDE} model_caps/ model_caps/ ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
+        lftp -e "mirror -c --parallel=5 ${INCLUDE} --exclude-glob '*.grib2' model_caps/ model_caps/ ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
     fi
 
     rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km/{00,12}/{013..048}
