@@ -21,7 +21,7 @@ rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_ciops/salish-sea
 INC_ARR=( "--include /"{000..006}"/" )
 INCLUDE=$(printf "%s " "${INC_ARR[@]}")
 
-RUNS=($(lftp -e "cls -1; exit" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/))
+RUNS=($(lftp -e "cls -1; exit" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/))
 NRUNS=${#RUNS[*]}
 
 for IDX in "${!RUNS[@]}"
@@ -32,22 +32,22 @@ do
     if [ $IDX != $((NRUNS-1)) ]
     then
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/
-        lftp -e "mirror -c --parallel=5 ${INCLUDE} ${RUN} ${RUN} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/
+        lftp -e "mirror -c --parallel=5 ${INCLUDE} ${RUN} ${RUN} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/
-        lftp -e "mirror -c --parallel=5 ${INCLUDE} ${RUN} ${RUN} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/
+        lftp -e "mirror -c --parallel=5 ${INCLUDE} ${RUN} ${RUN} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/
-        lftp -e "mirror -c --parallel=5 ${INCLUDE} ${RUN} ${RUN} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/
+        lftp -e "mirror -c --parallel=5 ${INCLUDE} ${RUN} ${RUN} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/
 
         rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/{east,west}/2km/${RUN}/{006..048}
         rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/${RUN}/{007..048}
 
     elif [ $IDX == $((NRUNS-1)) ]; then
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/
-        lftp -e "mirror -c --parallel=5 ${RUN} ${RUN} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/
+        lftp -e "mirror -c --parallel=5 ${RUN} ${RUN} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_ciops/east/2km/
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/
-        lftp -e "mirror -c --parallel=5 ${RUN} ${RUN} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/
+        lftp -e "mirror -c --parallel=5 ${RUN} ${RUN} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_ciops/west/2km/
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/
-        lftp -e "mirror -c --parallel=5 ${RUN} ${RUN} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/
+        lftp -e "mirror -c --parallel=5 ${RUN} ${RUN} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/500m/
         break
 
     fi

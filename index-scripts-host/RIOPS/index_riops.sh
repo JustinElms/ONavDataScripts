@@ -10,7 +10,7 @@ INC_ARR=( "--include "{000..005}"/" )
 INCLUDE=$(printf "%s " "${INC_ARR[@]}") 
 [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic
 cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/
-lftp -e "mirror -c --parallel=5 ${INCLUDE} polar_stereographic polar_stereographic ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/
+lftp -e "mirror -c --parallel=5 ${INCLUDE} polar_stereographic polar_stereographic ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/
 
 # Create best estimate:
 # Remove 006-084 timestamps from yesterday's data
@@ -26,9 +26,9 @@ do
         rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/{2d,3d}/${RUNS[$IDX]}/{006..084}
     else
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/
-        lftp -e "mirror -c --parallel=5 ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/
+        lftp -e "mirror -c --parallel=5 ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/
-        lftp -e "mirror -c --parallel=5 ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/        
+        lftp -e "mirror -c --parallel=5 ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/        
     fi
 done
 

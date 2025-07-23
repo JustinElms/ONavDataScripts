@@ -7,7 +7,7 @@ YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 
 [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_wcps ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_wcps
 cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_wcps
-lftp -e "mirror --parallel=5 model_wcps . ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
+lftp -e "mirror --parallel=5 model_wcps . ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/
 
 # Index new dataset
 

@@ -10,7 +10,7 @@ DATE=$(date +%Y%m%d)
 [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps
 
 cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD
-lftp -e "lcd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/  ; mirror --parallel=5 model_gdwps model_gdwps ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
+lftp -e "lcd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/  ; mirror --parallel=5 model_gdwps model_gdwps ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/
 
 # additions to create symlinks for latest data
 rm -r /data/thredds/model_links/model_gdwps/*

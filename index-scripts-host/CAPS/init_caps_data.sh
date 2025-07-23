@@ -9,13 +9,13 @@ END_DATE=$(date +%Y%m%d)
 while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
     echo $DATE
 
-    if wget -q --method=HEAD http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km; then
+    if wget -q --method=HEAD http://dd.weather.gc.ca/${DATE}/WXO-DD/model_caps/3km; then
         # Download data for the current date
         INC_ARR=( "--include "{001..012}"/" )
         INCLUDE=$(printf "%s " "${INC_ARR[@]}")
         [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/ ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
-        lftp -e "mirror -c --parallel=5 ${INCLUDE} --exclude-glob '*.grib2' model_caps/ model_caps/ ; bye" http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
+        lftp -e "mirror -c --parallel=5 ${INCLUDE} --exclude-glob '*.grib2' model_caps/ model_caps/ ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/
     fi
 
     rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km/{00,12}/{013..048}

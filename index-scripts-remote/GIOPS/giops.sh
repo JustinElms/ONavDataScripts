@@ -11,7 +11,7 @@ YESTERDAY=$(date -d "-1 days" +%Y%m%d)
 [ -f ${HOME}/db/giops-fc2dll.txt ] && rm ${HOME}/db/giops-fc2dll.txt
 [ -f ${HOME}/db/giops-fc3dll-10day.txt ] && rm ${HOME}/db/giops-fc3dll-10day.txt
 
-if [ -d http://hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/ ]
+if [ -d http://dd.weather.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/ ]
 then
     RUN="12"
 else
