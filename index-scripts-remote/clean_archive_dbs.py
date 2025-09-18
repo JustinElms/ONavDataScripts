@@ -12,7 +12,7 @@ uris = [
     "/home/ubuntu/db/ciops-salish-3d-archive.sqlite3",
     "/home/ubuntu/db/giops-fc3dll-10day-00-archive.sqlite3",
     "/home/ubuntu/db/giops-fc3dll-10day-12-archive.sqlite3",
-    "/home/ubuntu/db/giops-fc2dll-archive.sqlite3",
+    "/home/ubuntu/db/giops-fc2dll-10day-archive.sqlite3",
     "/home/ubuntu/db/riops-fc2dps-archive.sqlite3",
     "/home/ubuntu/db/riops-fc3dps-archive.sqlite3",
 ]
