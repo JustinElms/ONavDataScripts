@@ -11,7 +11,7 @@ while (( $(date -d "${DATE}" +%s) < $(date -d "${END_DATE}" +%s) )); do
 
     if wget -q --method=HEAD http://dd.weather.gc.ca/${DATE}/WXO-DD/model_ciops/; then
         # Download data for the current date
-        INC_ARR=( "--include /"{000..006}"/" )
+        INC_ARR=( "--include-glob */"{000..005}"/*" )
         INCLUDE=$(printf "%s " "${INC_ARR[@]}")  
         [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/
