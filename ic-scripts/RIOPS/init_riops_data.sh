@@ -21,5 +21,5 @@ while (( $(date -d "${DATE}" +%s) < $(date -d "${END_DATE}" +%s) )); do
 
 done
 
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; python3 ic_interface/add_nc_data.py riops_fc_2dps -s"
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; python3 ic_interface/add_nc_data.py riops_fc_3dps -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py riops_fc_2dps -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py riops_fc_3dps -s"

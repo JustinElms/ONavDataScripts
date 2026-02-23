@@ -20,9 +20,9 @@ while (( $(date -d "${DATE}" +%s) < $(date -d "${END_DATE}" +%s) )); do
     
 done
 
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; python3 ic_interface/add_nc_data.py ciops-east_fc_2dll -s"
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; python3 ic_interface/add_nc_data.py ciops-east_fc_3dll -s"
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; python3 ic_interface/add_nc_data.py ciops-west_fc_2dll -s"
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; python3 ic_interface/add_nc_data.py ciops-west_fc_3dll -s"
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; python3 ic_interface/add_nc_data.py ciops-salish-sea_fc_2dll -s"
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; python3 ic_interface/add_nc_data.py ciops-salish-sea_fc_3dll -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-east_fc_2dll -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-east_fc_3dll -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-west_fc_2dll -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-west_fc_3dll -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-salish-sea_fc_2dll -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-salish-sea_fc_3dll -s"
