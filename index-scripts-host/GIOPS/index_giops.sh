@@ -17,17 +17,19 @@ lftp -e "mirror -c --parallel=5 lat_lon lat_lon ; bye" http://dd.weather.gc.ca/$
 
 if [ -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/ ]; then
     rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/00/{015..240..003}
-    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{024..240..024}
+    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/000/
+    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{048..240..024}
 fi
 
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/2d/00/{015..240..003}
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/2d/12/{012..240..003}
-rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{024..240..024}
+rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/000/
+rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{048..240..024}
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/{048..240..024}
 
 # Remove data older than 2 yrs
 
-rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-2 years" +%Y%m%d)
+# rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-2 years" +%Y%m%d)
 
 # index new dataset
 

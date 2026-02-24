@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Initializes best estimate for GIOPS datasetsinit_giops_data.
+# Initializes best estimate for GIOPS datasets
 DATE=$(date -d "-2 years" +%Y%m%d)
 END_DATE=$(date +%Y%m%d)
 
@@ -20,12 +20,12 @@ while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
 
         EXC_ARR=( "--exclude "{048..240..024}"/" )
         EXCLUDE=$(printf "%s " "${EXC_ARR[@]}")
-        lftp -e "mirror -c --parallel=5 ${EXCLUDE[@]} 3d 3d ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/
+        lftp -e "mirror -c --parallel=5 --exclude 00/000/ ${EXCLUDE[@]} 3d 3d ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/
        
     fi
 
     rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/12/012/  
-    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/024/
+    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/048/
     
 done
 
