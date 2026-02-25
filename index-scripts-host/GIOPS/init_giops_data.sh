@@ -6,8 +6,8 @@ END_DATE=$(date +%Y%m%d)
 
 # Get available data from past 90 days
 while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
+    YESTERDAY=$DATE
     DATE=$(date -d "${DATE} +1 days" +%Y%m%d)
-    YESTERDAY=$(date -d "${DATE} days" +%Y%m%d)
     echo $DATE
 
     if wget -q --method=HEAD http://dd.weather.gc.ca/${DATE}/WXO-DD/model_giops/netcdf; then
