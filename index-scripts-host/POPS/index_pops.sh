@@ -15,6 +15,7 @@ cd /data/hpfx.collab.science.gc.ca/${DATE}/model_pops/
 
 for MODEL in ${MODELS[@]}; do
   lftp -e "lcd /data/hpfx.collab.science.gc.ca/${DATE}/model_pops/  ; mirror --parallel=5 ${MODEL} ${MODEL} ; bye" http://dd.weather.gc.ca/dfo/pops_model/${DATE}
+  ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ${MODEL} --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_pops/${MODEL}/"
 done
 
 ssh ubuntu@u2004-index "cd index-scripts-remote/POPS/ ; bash pops.sh"

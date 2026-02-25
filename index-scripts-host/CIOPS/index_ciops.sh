@@ -53,10 +53,11 @@ do
     fi
 done
 
-# Remove data older than 2 yrs
-
-rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-2 years" +%Y%m%d)
-
 # Index new dataset
-
 ssh ubuntu@u2004-index "cd index-scripts-remote/CIOPS/ ; bash ciops.sh"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-east_fc_2dll -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-east_fc_3dll -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/east/"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-west_fc_2dll -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-west_fc_3dll -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/west/"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-salish-sea_fc_2dll -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py ciops-salish-sea_fc_3dll -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_ciops/salish-sea/"

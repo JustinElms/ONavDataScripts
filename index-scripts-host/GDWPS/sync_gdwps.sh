@@ -5,8 +5,6 @@
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 
-DATE=$(date +%Y%m%d)
-
 [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps
 
 cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD
@@ -26,5 +24,9 @@ for f in $DATA
 do
    ln -s $f /data/thredds/model_links/model_gdwps/
 done
+
+CWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+python ${CWD}/process_gdwps.py /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py gdwps_2dll --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/00/"
 
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_gdwps

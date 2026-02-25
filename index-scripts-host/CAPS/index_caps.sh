@@ -30,10 +30,7 @@ do
     fi
 done
 
-# Remove data older than 2 yr
-
-rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-2 years" +%Y%m%d)
-
 # Index new dataset
-
 ssh ubuntu@u2004-index "cd index-scripts-remote/CAPS/ ; bash caps.sh"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py caps_fc_2drp -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km/"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py caps_fc_3drp -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_caps/3km/"

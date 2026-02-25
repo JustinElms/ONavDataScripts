@@ -27,10 +27,7 @@ rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{048..240..024}
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/{048..240..024}
 
-# Remove data older than 2 yrs
-
-# rm -r /data/hpfx.collab.science.gc.ca/$(date -d "-2 years" +%Y%m%d)
-
 # index new dataset
-
 ssh ubuntu@u2004-index "cd index-scripts-remote/GIOPS/ ; bash giops.sh"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py giops_day -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py giops_fc_10d_2dll -s --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/"
