@@ -9,7 +9,7 @@ YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 
 [ ! -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon ] && mkdir -p /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon
 cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf
-lftp -e "mirror -c --parallel=5 lat_lon lat_lon ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_giops/netcdf
+lftp -e "mirror -c --parallel=5 --exclude 00/000/ lat_lon lat_lon ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_giops/netcdf
 
 # Create best estimate
 # For GIOPS 10 day 3D FC keep only 024 timestamps. Alternate which run gets indexed to match latest forecast

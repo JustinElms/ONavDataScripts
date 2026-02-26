@@ -36,3 +36,5 @@ while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
 done
 
 ssh ubuntu@u2004-index "cd index-scripts-remote/GIOPS/ ; bash init_giops_db.sh"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py giops_day -s"
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py giops_fc_10d_2dll -s"
