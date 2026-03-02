@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Downloads and indexes latest GDWPS model data
-
+source ~/onav-cloud/etc/ocean-navigator-env.sh 
 DATE=$(date +%Y%m%d)
 YESTERDAY=$(date  --date="yesterday" +"%Y%m%d")
 
@@ -25,8 +25,7 @@ do
    ln -s $f /data/thredds/model_links/model_gdwps/
 done
 
-CWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-python ${CWD}/process_gdwps.py /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/
+python ~/ONavDataScripts/index-scripts-host/GDWPS/process_gdwps.py /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/
 ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py gdwps_2dll --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/00/"
 
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_gdwps
