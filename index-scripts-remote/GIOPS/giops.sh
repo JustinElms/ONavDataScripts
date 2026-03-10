@@ -20,7 +20,7 @@ fi
 
 # Add yesterday's best estimate data to archive
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc2dll-10day-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/2d/ -o ${HOME}/db -h
-${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc3dll-10day-${RUN}-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/${RUN}/ -o ${HOME}/db -h
+${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc3dll-10day-${RUN}-archive -i /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/${RUN}/024/ -o ${HOME}/db -h
 
 cp ${HOME}/db/giops-fc2dll-10day-archive.sqlite3 ${HOME}/db/giops-fc2dll-10day.sqlite3
 cp ${HOME}/db/giops-fc3dll-10day-${RUN}-archive.sqlite3 ${HOME}/db/giops-fc3dll-10day.sqlite3
