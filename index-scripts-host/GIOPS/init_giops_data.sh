@@ -5,7 +5,7 @@ DATE=$(date -d "-90 days" +%Y%m%d)
 END_DATE=$(date +%Y%m%d)
 
 # Get available data from past 90 days
-while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
+while (( $(date -d "${DATE}" +%s) < $(date -d "${END_DATE}" +%s) )); do
     YESTERDAY=$DATE
     DATE=$(date -d "${DATE} +1 days" +%Y%m%d)
     echo $DATE
@@ -29,9 +29,13 @@ while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
         rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/00/000/
     fi
 
+    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/*/{015..240..003}/ 2>/dev/null
+
     if [ -d "/data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/024/" ]; then
         rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/000/
     fi
+
+    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/*/{048..240..024}/ 2>/dev/null
 
 done
 
