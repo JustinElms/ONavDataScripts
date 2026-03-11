@@ -16,7 +16,7 @@ lftp -e "mirror -c --parallel=5 --exclude 00/000/ lat_lon lat_lon ; bye" http://
 
 if [ -d /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/12/ ]; then
     rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2d/00/{015..240..003}
-    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{024..240..024}
+    rm -r /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/00/{048..240..024}
 fi
 
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_giops/netcdf/lat_lon/2d/00/{015..240..003}
