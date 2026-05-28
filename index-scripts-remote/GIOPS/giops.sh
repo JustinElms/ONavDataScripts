@@ -29,7 +29,7 @@ find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/2
 ${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc2dll-10day -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/ -o ${HOME}/db --file-list ${HOME}/db/giops-fc2dll-10day.txt -h
 
 find /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/netcdf/lat_lon/3d/${RUN}/ -type f > ${HOME}/db/giops-fc3dll-10day.txt
-${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n ${HOME}/db/giops-fc3dll-10day -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/ -o ${HOME}/db --file-list ${HOME}/db/giops-fc3dll-10day.txt  -h
+${HOME}/netcdf-timestamp-mapper/build/nc-timestamp-mapper -n giops-fc3dll-10day -i /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_giops/ -o ${HOME}/db --file-list ${HOME}/db/giops-fc3dll-10day.txt  -h
 
 mv ${HOME}/db/giops-fc2dll-10day.sqlite3 /data/db/
 mv ${HOME}/db/giops-fc3dll-10day.sqlite3 /data/db/
