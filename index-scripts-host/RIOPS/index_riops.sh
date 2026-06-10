@@ -28,7 +28,7 @@ do
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/
         lftp -e "mirror -c --parallel=5 ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/2d/
         cd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/
-        lftp -e "mirror -c --parallel=5 ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/        
+        lftp -e "mirror -c --parallel=5 ${RUNS[$IDX]} ${RUNS[$IDX]} ; bye" http://dd.weather.gc.ca/${DATE}/WXO-DD/model_riops/netcdf/forecast/polar_stereographic/3d/
     fi
 done
 

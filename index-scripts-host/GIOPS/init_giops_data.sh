@@ -5,7 +5,7 @@ DATE=$(date -d "-90 days" +%Y%m%d)
 END_DATE=$(date +%Y%m%d)
 
 # Get available data from past 90 days
-while (( $(date -d "${DATE}" +%s) < $(date -d "${END_DATE}" +%s) )); do
+while (( $(date -d "${DATE}" +%s) <= $(date -d "${END_DATE}" +%s) )); do
     YESTERDAY=$DATE
     DATE=$(date -d "${DATE} +1 days" +%Y%m%d)
     echo $DATE

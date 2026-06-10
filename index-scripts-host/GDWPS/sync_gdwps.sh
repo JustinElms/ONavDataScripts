@@ -13,9 +13,11 @@ lftp -e "lcd /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/  ; mirror --paralle
 # additions to create symlinks for latest data
 rm -r /data/thredds/model_links/model_gdwps/*
 
+MODEL_RUN="00"
 if [ -d "/data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/12/" ]
 then
   DATA=/data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/12/*.grib2
+  MODEL_RUN="12"
 else
   DATA=/data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/00/*.grib2
 fi 
@@ -25,7 +27,7 @@ do
    ln -s $f /data/thredds/model_links/model_gdwps/
 done
 
-python ~/ONavDataScripts/index-scripts-host/GDWPS/process_gdwps.py /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/
-ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py gdwps_2dll --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/00/"
+python ~/ONavDataScripts/index-scripts-host/GDWPS/process_gdwps.py /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/${MODEL_RUN}/
+ssh ubuntu@u2204-icechunk "cd icechunk/ ; source env/icechunk-env.sh ; python ic_interface/add_nc_data.py gdwps_2dll --nc_dir /data/hpfx.collab.science.gc.ca/${DATE}/WXO-DD/model_gdwps/25km/${MODEL_RUN}/"
 
 rm -r /data/hpfx.collab.science.gc.ca/${YESTERDAY}/WXO-DD/model_gdwps

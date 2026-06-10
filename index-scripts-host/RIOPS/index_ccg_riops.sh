@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 cd /data/depot.cmc.ec.gc.ca/ftp/cmoi/dfo/dfo.ccg/
 
